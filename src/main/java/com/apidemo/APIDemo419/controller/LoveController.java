@@ -1,4 +1,4 @@
-package com.apidemo.APIDemo419;
+package com.apidemo.APIDemo419.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.apidemo.APIDemo419.entity.LoveMatcher;
+import com.apidemo.APIDemo419.entitylove.LoveMatcher;
 
 @Controller
 public class LoveController {
@@ -41,8 +41,11 @@ public class LoveController {
 		String url ="https://love-calculator.p.rapidapi.com/getPercentage?fname=" + first +"&sname="+ second;
 		// Make the call to the API
 		ResponseEntity<LoveMatcher> response = rt.exchange(url, HttpMethod.GET, entity, LoveMatcher.class);
+		
+		LoveMatcher test = response.getBody();
 		// the getBody() method returns just the relevant details for the response, not all 
 		// the unnecessary stuff like the status code
+		
 		System.out.println(response);
 		
 		return new ModelAndView("love-interest", "loveresults", response.getBody());

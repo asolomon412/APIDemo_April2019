@@ -1,4 +1,4 @@
-package com.apidemo.APIDemo419;
+package com.apidemo.APIDemo419.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,10 +11,16 @@ import com.apidemo.APIDemo419.entity.QuoteResult;
 public class HomeController {
 	@RequestMapping("/")
 	public ModelAndView index() {
+		
 		RestTemplate rt = new RestTemplate();
 		QuoteResult quote = rt.getForObject("https://gturnquist-quoters.cfapps.io/api/random", QuoteResult.class);
+		
 		System.out.println(quote);
+		
+		
 		return new ModelAndView("index","quotetest", quote);
 	}
+
+
 
 }
